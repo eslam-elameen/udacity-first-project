@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(0deg, rgb(130 9 48), rgba(0, 13, 60, 1) 100%);
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+}
+
+ul {
+    list-style: none;
+    position: fixed;
+}
+
+nav .navbar {
+    text-align: center;
+    width: 100%;
+    background: #000000c9;
+    margin: 0;
+}
+
+nav .navbar li {
+    display: inline-block;
+    padding: 30px;
+}
+
+.active,
+li a:hover {
+    color: #85abff;
+}
+
+#section1 {
+    padding-top: 95px;
+}
+
+.section {
+    padding: 22px 200px;
+}
+
+.footer {
+    padding: 20px;
+    background: #000000d9;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 12px;
+    color: white;
+}
