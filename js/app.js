@@ -1,5 +1,6 @@
 const navUl = document.getElementById('navigation');
 
+
 const comingData = [{ links: 'SECTION ONE', title: 'SECTION ONE', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti.' }, { links: 'SECTION TOW', title: 'SECTION TWO', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti.' }, { links: 'SECTION THREE', title: 'SECTION THREE', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae' }, { links: 'SECTION FOUR', title: 'SECTION FOUR', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti.' }, { links: 'SECTION FIVE', title: 'SECTION FIVE', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti.' }];
 
 for (let i = 0; i < comingData.length; i++) {
@@ -24,7 +25,6 @@ for (let i = 0; i < comingData.length; i++) {
     navUl.classList.add('navbar');
     anchors.classList.add('links')
     list.appendChild(anchors);
-
 }
 const footer = document.createElement('footer');
 document.body.appendChild(footer);
@@ -46,9 +46,8 @@ navLinks.forEach(navLink => {
     })
 })
 
-
 navLinks.forEach(node => {
-    node.addEventListener('click', handle)
+    node.addEventListener('click', handle);
 })
 
 function handle(e) {
@@ -57,8 +56,9 @@ function handle(e) {
     if (current) {
         current.classList.remove('active')
     }
-    this.classList.add('active')
+    this.classList.add('active');
 }
+
 
 window.addEventListener("scroll", (e) => {
     let scroll = this.scrollY;
@@ -66,8 +66,21 @@ window.addEventListener("scroll", (e) => {
         navUl.style.visibility = 'visible'
     }
     setTimeout(function() {
-            navUl.style.visibility = 'hidden'
-        }, 3000)
-        // }
+        navUl.style.visibility = 'hidden'
+    }, 3000);
 
+
+    navLinks.forEach(node => {
+        let currentId = node.getAttribute('href');
+        let currentSection = document.getElementById(currentId.replace('#', ''));
+        let navHeight = navUl.getBoundingClientRect().height;
+
+        if (currentSection.offsetTop - navHeight <= scroll && scroll < currentSection.getBoundingClientRect().height + currentSection.offsetTop) {
+            for (let i = 1; i <= navLinks.length; i++) {
+                let items = node.parentNode.parentNode.childNodes[i]
+                items.firstChild.classList.remove('active')
+            }
+            node.classList.add('active');
+        }
+    })
 });
