@@ -62,7 +62,7 @@ window.addEventListener("scroll", (e) => {
     }
     setTimeout(function() {
         navUl.style.visibility = 'hidden'
-    }, 7000);
+    }, 10000);
 
 
     // highlight the section on scroll  
