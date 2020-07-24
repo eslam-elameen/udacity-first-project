@@ -1,9 +1,12 @@
 const navUl = document.getElementById('navigation');
 
-
+// the coming data object 
 const comingData = [{ links: 'SECTION ONE', title: 'SECTION ONE', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti.' }, { links: 'SECTION TOW', title: 'SECTION TWO', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti.' }, { links: 'SECTION THREE', title: 'SECTION THREE', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae' }, { links: 'SECTION FOUR', title: 'SECTION FOUR', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti.' }, { links: 'SECTION FIVE', title: 'SECTION FIVE', body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium est magni aspernatur iure architecto dolorem molestiae quasi beatae sit repellendus facilis rem blanditiis suscipit illo, nostrum molestias, dolor doloribus deleniti.' }];
 
+
+// creating html dom 
 for (let i = 0; i < comingData.length; i++) {
+    // creating sections 
     const sections = document.createElement('section');
     document.body.appendChild(sections);
     const divContainer = document.createElement('div');
@@ -17,6 +20,7 @@ for (let i = 0; i < comingData.length; i++) {
     divContainer.appendChild(sectionHeaders);
     divContainer.appendChild(sectionBody);
 
+    // creating nav links 
     const list = document.createElement('li');
     navUl.appendChild(list)
     const anchors = document.createElement('a');
@@ -26,6 +30,8 @@ for (let i = 0; i < comingData.length; i++) {
     anchors.classList.add('links')
     list.appendChild(anchors);
 }
+
+// creating footer 
 const footer = document.createElement('footer');
 document.body.appendChild(footer);
 const footerContainer = document.createElement('div');
@@ -37,6 +43,7 @@ footerContainer.appendChild(para);
 
 const navLinks = document.querySelectorAll('.links');
 
+// making scroll smooth on click nav link to scroll to view  
 navLinks.forEach(navLink => {
     navLink.addEventListener('click', function(e) {
         let destination = document.querySelector(this.hash);
@@ -46,20 +53,8 @@ navLinks.forEach(navLink => {
     })
 })
 
-navLinks.forEach(node => {
-    node.addEventListener('click', handle);
-})
 
-function handle(e) {
-    e.preventDefault();
-    const current = document.querySelector('.active');
-    if (current) {
-        current.classList.remove('active')
-    }
-    this.classList.add('active');
-}
-
-
+// hide navbar when not scroll
 window.addEventListener("scroll", (e) => {
     let scroll = this.scrollY;
     if (scroll) {
@@ -67,9 +62,10 @@ window.addEventListener("scroll", (e) => {
     }
     setTimeout(function() {
         navUl.style.visibility = 'hidden'
-    }, 3000);
+    }, 7000);
 
 
+    // highlight the section on scroll  
     navLinks.forEach(node => {
         let currentId = node.getAttribute('href');
         let currentSection = document.getElementById(currentId.replace('#', ''));
@@ -84,3 +80,17 @@ window.addEventListener("scroll", (e) => {
         }
     })
 });
+
+// adding active style to clicked section 
+navLinks.forEach(node => {
+    node.addEventListener('click', handle);
+})
+
+function handle(e) {
+    e.preventDefault();
+    const current = document.querySelector('.active');
+    if (current) {
+        current.classList.remove('active')
+    }
+    this.classList.add('active');
+}
